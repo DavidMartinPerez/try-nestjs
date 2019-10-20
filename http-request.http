@@ -1,0 +1,33 @@
+### POST crear perrito
+POST http://localhost:3000/puppies HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Poppy",
+    "breed": "commun",
+    "age": 1 ,
+    "adopted": false
+}
+
+### GET obtener perritos
+GET http://localhost:3000/puppies HTTP/1.1
+
+
+### GET un perrito por id -> esta id es el ultimo parametro y debe coincidir con un cachorro ya creado
+GET http://localhost:3000/puppies/:id HTTP/1.1
+
+
+### DELETE eliminar perrito por id -> esta id es el ultimo parametro y debe coincidir con un cachorro ya creado
+DELETE http://localhost:3000/puppies/:id HTTP/1.1
+content-type: application/json
+
+
+### PUT actualizar perrito-> esta id es el ultimo parametro y debe coincidir con un cachorro ya creado
+PUT http://localhost:3000/puppies/:id HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Poppy 2º",
+    "age": 3 ,
+    "adopted": true
+}
