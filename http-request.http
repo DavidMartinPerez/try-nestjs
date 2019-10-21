@@ -1,3 +1,27 @@
+// PRODUCTS
+
+### CREATE PRODUCT crear un producto
+POST http://localhost:3000/product/create HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Champú para perros",
+    "description": "Este champú deja suave el pelo de su querido mejor amigo",
+    "imageURL": "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcRdd66CWIR0SVlFaU68pnKgaaTgUnGdWWjyLHnkYlJmHYPxOZeesyhzVgLq-5FfxDxGxHSPrCCJb3q3-UkilMeHt2IIlrzc9w&usqp=CAE",
+    "price": 30
+}
+
+### GET recuperar todos los productos
+GET http://localhost:3000/product HTTP/1.1
+
+
+### GET un producto por id -> esta id es el ultimo parametro y debe coincidir con un producto ya creado
+GET http://localhost:3000/product/5dae05940c5d2c04086b8981 HTTP/1.1
+
+
+
+
+//PUPPIES
 ### POST crear perrito
 POST http://localhost:3000/puppies HTTP/1.1
 content-type: application/json
