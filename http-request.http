@@ -5,21 +5,31 @@ POST http://localhost:3000/product/create HTTP/1.1
 content-type: application/json
 
 {
-    "name": "Champú para perros",
+    "name" : "Champú",
     "description": "Este champú deja suave el pelo de su querido mejor amigo",
     "imageURL": "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcRdd66CWIR0SVlFaU68pnKgaaTgUnGdWWjyLHnkYlJmHYPxOZeesyhzVgLq-5FfxDxGxHSPrCCJb3q3-UkilMeHt2IIlrzc9w&usqp=CAE",
     "price": 30
 }
 
 ### GET recuperar todos los productos
-GET http://localhost:3000/product HTTP/1.1
+GET http://localhost:3000/product/all HTTP/1.1
 
 
 ### GET un producto por id -> esta id es el ultimo parametro y debe coincidir con un producto ya creado
-GET http://localhost:3000/product/5dae05940c5d2c04086b8981 HTTP/1.1
+GET http://localhost:3000/product/5dae0f5ad58bb81f90ba7ce6 HTTP/1.1
 
+### DELETE eliminar product por id -> esta id es el query params y debe coincidir con un product ya creado
+DELETE http://localhost:3000/product/delete?id=5dae067f4ae6b70b78128ef1 HTTP/1.1
 
+### PUT actualizar producto-> esta id es un query parms y debe coincidir con un product ya creado
+PUT http://localhost:3000/product/update?id=5dae0f5ad58bb81f90ba7ce6 HTTP/1.1
+content-type: application/json
 
+{
+    "name" : "Champú Extremo",
+    "description": "Deje a su perro ultra limpiooo!!!",
+    "price": 80
+}
 
 //PUPPIES
 ### POST crear perrito
@@ -38,7 +48,7 @@ GET http://localhost:3000/puppies HTTP/1.1
 
 
 ### GET un perrito por id -> esta id es el ultimo parametro y debe coincidir con un cachorro ya creado
-GET http://localhost:3000/puppies/:id HTTP/1.1
+GET http://localhost:3000/puppies/5dac40a8f6522b40ecaacb65 HTTP/1.1
 
 
 ### DELETE eliminar perrito por id -> esta id es el ultimo parametro y debe coincidir con un cachorro ya creado

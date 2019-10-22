@@ -3,7 +3,6 @@ import { Puppy } from './interfaces/Puppy';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { CreatePuppyDTO } from './dto/create-puppy.dto';
-import { ObjectId } from 'bson';
 
 @Injectable()
 export class PuppiesService {

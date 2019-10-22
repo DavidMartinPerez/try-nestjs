@@ -15,6 +15,7 @@ export class PuppiesController {
 
 	@Get(':id')
 	getPuppy( @Param('id') id: string ): Promise<Puppy>  {
+		console.log({ id });
 		return this.puppiesService.getPuppy( id );
 	}
 

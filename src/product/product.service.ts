@@ -1,4 +1,4 @@
-import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
+import { Injectable, HttpException, HttpStatus, BadRequestException, NotFoundException } from '@nestjs/common';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { Product } from './interfaces/product.interface';
@@ -14,23 +14,41 @@ export class ProductService {
 	}
 
 	async getProduct(productID: string): Promise<Product> {
-		const product = await this.productModel.findById(productID);
-		return product;
+		try {
+			const product = await this.productModel.findById(productID);
+			return product;
+		} catch (e) {
+			throw new NotFoundException('Product does not exists');
+		}
 	}
 
 	async createProduct(newProduct: CreateProductDTO): Promise<Product> {
 		const product = new this.productModel(newProduct);
+
+		if (newProduct.name == null || newProduct.name == '') {
+			throw new BadRequestException('"Name" parameter missing');
+		}
+
 		await product.save();
 		return product;
 	}
 
 	async updateProduct(productID: string, updateProduct: CreateProductDTO): Promise<Product> {
-		const updatedProduct = await this.productModel.update(productID, updateProduct, { new: true });
-		return updatedProduct;
+		try {
+			const product = await this.productModel.updateOne( { _id: productID }, updateProduct, { new: true });
+			return product;
+		} catch(e) {
+			throw new NotFoundException('Product does not exists');
+		}
 	}
 
-	async deleteProduct(productID: string): Promise<Product> {
-		const deleteProduct = await this.productModel.findByIdAndDelete(productID);
-		return deleteProduct;
+	async deleteProduct(productID: string): Promise<any> {
+		try {
+			const deleteProduct = await this.productModel.deleteOne( { _id: productID });
+			return deleteProduct;
+		} catch(e) {
+			throw new NotFoundException('Product does not exists');
+		}
+
 	}
 }
